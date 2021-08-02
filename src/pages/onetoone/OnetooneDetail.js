@@ -51,20 +51,13 @@ const Detail = (props) => {
     })
       .then((res) => res.text())
       .then((res) => {
-        if (res === "ok") {
-          props.history.push("/onetoone");
-        } else {
-          alert("삭제 실패했습니다.");
-        }
+        props.history.push("/onetoone");
       });
   };
 
   const updateOne = () => {
     props.history.push("/updateForm/" + id);
   };
-
-  const date = new Date(onetoone.qnaDate * 1000);
-  console.log(date);
 
   return (
     <>

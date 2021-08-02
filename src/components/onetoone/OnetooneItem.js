@@ -6,17 +6,17 @@ import { useHistory } from "react-router";
 // import { useDispatch } from "react-redux";
 
 const OnetooneItem = (props) => {
-  const { qnaNum, qnaTitle, qnaAuthor, qnaDate, qnaState } = props.onetoone;
+  const { id, qnaTitle, qnaAuthor, qnaDate, qnaState } = props.onetoone;
 
   const history = useHistory();
 
   return (
     <TableRow>
-      <TableCell>{qnaNum}</TableCell>
+      <TableCell>{id}</TableCell>
       <TableCell
         style={{ cursor: "pointer" }}
         onClick={() => {
-          history.push("/onetoone/" + qnaNum);
+          history.push("/onetoone/" + id);
         }}
       >
         {qnaTitle}
