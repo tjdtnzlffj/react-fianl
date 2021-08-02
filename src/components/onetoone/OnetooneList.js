@@ -25,7 +25,7 @@ const OnetooneList = () => {
   // 함수 실행시 최초 한번만 실행되는 것
   // 상태값이 변경될때마다 실행, 고로 한번만 실행하려면 의존성쪽에 빈배열 써줘야함
   useEffect(() => {
-    fetch("http://localhost:8080/onetoone")
+    fetch(`${process.env.REACT_APP_API_BASE}/onetoone`)
       .then((response) => response.json())
       .then((response) => {
         console.log(1, response);
