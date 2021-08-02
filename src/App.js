@@ -32,13 +32,6 @@ import { pink700 } from "material-ui/styles/colors";
 
 import StickyFooter from "./components/Footer";
 
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import rootReducer from "./redux/reducer/index";
-
-// rootReducer로 redux store 생성
-const store = createStore(rootReducer);
-
 const Onetoone = lazy(() => import("./components/onetoone/Onetoone"));
 const Contact = lazy(() => import("./components/Contact"));
 const Detail = lazy(() => import("./pages/onetoone/OnetooneDetail"));
@@ -136,81 +129,75 @@ function App() {
   );
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <div className={classes.root}>
-            <header>
-              <AppBar position="fixed">
-                <Toolbar>
-                  <IconButton
-                    color="inherit"
-                    edge="start"
-                    className={classes.menuButton}
-                    onClick={handlerDrawerToggle}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                  <Typography variant="h6">
-                    <Link to="/" className={classes.title}>
-                      BBangDuck
-                    </Link>
-                  </Typography>
-                  <Hidden mdDown implementation="css">
-                    <Tabs className={classes.tabs} fullWidth={true}>
-                      <Tab label="Home" component={Link} to="/"></Tab>
-                      <Tab label="Search" to="/"></Tab>
-                      <Tab label="Community" to="/"></Tab>
-                      <Tab
-                        label="1:1 Q&A"
-                        component={Link}
-                        to="/onetoone"
-                      ></Tab>
-                      <Tab
-                        label="Contact Us"
-                        component={Link}
-                        to="/contacts"
-                      ></Tab>
-                    </Tabs>
-                  </Hidden>
-                </Toolbar>
-              </AppBar>
-              <Hidden lgUp implementation="css">
-                <Drawer
-                  variant="temporary"
-                  open={mobileOpen}
-                  classes={{ paper: classes.drawerPaper }}
-                  onClose={handlerDrawerToggle}
-                  position="right"
+    <ThemeProvider theme={theme}>
+      <Router>
+        <div className={classes.root}>
+          <header>
+            <AppBar position="fixed">
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  edge="start"
+                  className={classes.menuButton}
+                  onClick={handlerDrawerToggle}
                 >
-                  {drawer}
-                </Drawer>
-              </Hidden>
-            </header>
-            <main className={classes.content}>
-              <div className={classes.toolbar} />
-              <Suspense fallback={<div>로딩중입니다...</div>}>
-                <Switch>
-                  <Route path="/" component={Home} exact></Route>
-                  <Route path="/onetoone" component={Onetoone} exact></Route>
-                  <Route path="/contacts" component={Contact} exact></Route>
-                  <Route path="/onetoone/:id" component={Detail} exact></Route>
-                  <Route path="/saveForm" component={SaveForm} exact></Route>
-                  <Route
-                    path="/updateForm/:id"
-                    component={UpdateForm}
-                    exact
-                  ></Route>
-                </Switch>
-              </Suspense>
-            </main>
-          </div>
-          <div>
-            <StickyFooter />
-          </div>
-        </Router>
-      </ThemeProvider>
-    </Provider>
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6">
+                  <Link to="/" className={classes.title}>
+                    BBangDuck
+                  </Link>
+                </Typography>
+                <Hidden mdDown implementation="css">
+                  <Tabs className={classes.tabs} fullWidth={true}>
+                    <Tab label="Home" component={Link} to="/"></Tab>
+                    <Tab label="Search" to="/"></Tab>
+                    <Tab label="Community" to="/"></Tab>
+                    <Tab label="1:1 Q&A" component={Link} to="/onetoone"></Tab>
+                    <Tab
+                      label="Contact Us"
+                      component={Link}
+                      to="/contacts"
+                    ></Tab>
+                  </Tabs>
+                </Hidden>
+              </Toolbar>
+            </AppBar>
+            <Hidden lgUp implementation="css">
+              <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                classes={{ paper: classes.drawerPaper }}
+                onClose={handlerDrawerToggle}
+                position="right"
+              >
+                {drawer}
+              </Drawer>
+            </Hidden>
+          </header>
+          <main className={classes.content}>
+            <div className={classes.toolbar} />
+            <Suspense fallback={<div>로딩중입니다...</div>}>
+              <Switch>
+                <Route path="/" component={Home} exact></Route>
+                <Route path="/onetoone" component={Onetoone} exact></Route>
+                <Route path="/contacts" component={Contact} exact></Route>
+                <Route path="/onetoone/:id" component={Detail} exact></Route>
+                <Route path="/saveForm" component={SaveForm} exact></Route>
+                <Route
+                  path="/updateForm/:id"
+                  component={UpdateForm}
+                  exact
+                ></Route>
+              </Switch>
+            </Suspense>
+          </main>
+        </div>
+        <div>
+          <StickyFooter />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
