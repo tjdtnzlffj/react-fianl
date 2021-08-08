@@ -16,6 +16,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 
+import PeopleIcon from "@material-ui/icons/People";
+
 import {
   Home as HomeIcon,
   PlaylistAddCheck,
@@ -153,6 +155,14 @@ function App() {
           </ListItemIcon>
           <ListItemText>Search</ListItemText>
         </ListItem>
+        <Link to="/board" className={classes.link}>
+          <ListItem button>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText>Community</ListItemText>
+          </ListItem>
+        </Link>
         <Link to="/onetoone" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
