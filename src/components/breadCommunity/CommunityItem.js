@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme) => ({
 const CommunityItem = (props) => {
   const { id, title, content } = props.board;
 
+  const regex = /(<([^>]+)>)/gi;
+
   const history = useHistory();
 
   const classes = useStyles();
@@ -33,7 +35,7 @@ const CommunityItem = (props) => {
       >
         <h3 style={{ textAlign: "center" }}>{title}</h3>
         <hr />
-        <div style={{ marginLeft: "10px" }}>{content}</div>
+        <div style={{ marginLeft: "10px" }}>{content.replace(regex, "")}</div>
       </Paper>
     </div>
   );

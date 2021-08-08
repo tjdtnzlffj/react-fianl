@@ -1,27 +1,27 @@
-import { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { useState } from "react";
+import TextField from "@material-ui/core/TextField";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 const useStyles = makeStyles((theme) => ({
   formwrapper: {
-    width: '56%',
-    margin: '0 auto',
-    marginTop: '5px',
+    width: "56%",
+    margin: "0 auto",
+    marginTop: "5px",
   },
   inputtextbox: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 }));
 
 const CommunityForm = (props) => {
   const [board, setBoard] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
   });
 
   const changeValue = (e) => {
@@ -34,9 +34,9 @@ const CommunityForm = (props) => {
   const addBoard = (e) => {
     e.preventDefault();
     fetch(`${process.env.REACT_APP_API_BASE}/board/`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(board),
     })
@@ -50,9 +50,9 @@ const CommunityForm = (props) => {
       .then((res) => {
         console.log(res);
         if (res !== null) {
-          props.history.push('/board');
+          props.history.push("/board");
         } else {
-          alert('게시물 작성에 실패하였습니다');
+          alert("게시물 작성에 실패하였습니다");
         }
       });
   };
@@ -69,14 +69,14 @@ const CommunityForm = (props) => {
           size="small"
           variant="outlined"
           style={{
-            marginBottom: '15px',
-            marginRight: '310px',
-            marginTop: '20px',
-            width: '25%',
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
           }}
         />
         <Button
-          style={{ width: '7%', marginTop: '20px' }}
+          style={{ width: "7%", marginTop: "20px" }}
           variant="contained"
           color="default"
           startIcon={<CloudUploadIcon />}
@@ -98,10 +98,10 @@ const CommunityForm = (props) => {
             });
           }}
           onBlur={(event, editor) => {
-            console.log('Blur.', editor);
+            console.log("Blur.", editor);
           }}
           onFocus={(event, editor) => {
-            console.log('Focus.', editor);
+            console.log("Focus.", editor);
           }}
         />
       </Box>

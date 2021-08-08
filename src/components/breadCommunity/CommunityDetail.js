@@ -53,7 +53,6 @@ const CommunityDetail = (props) => {
       <h2>{board.title}</h2>
       <h4>{ReactHtmlParser(board.content)}</h4>
       <div>
-        {" "}
         <Button
           variant="outlined"
           onClick={() => {
