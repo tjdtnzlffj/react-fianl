@@ -42,7 +42,11 @@ const Onetoone = () => {
               to="/saveForm"
               style={{ textDecoration: "none", marginLeft: "90%" }}
             >
-              <Button variant="contained" color="secondary">
+              <Button
+                variant="contained"
+                color="secondary"
+                style={{ marginRight: "2rem", marginBottom: "1rem" }}
+              >
                 글쓰기
               </Button>
             </Link>

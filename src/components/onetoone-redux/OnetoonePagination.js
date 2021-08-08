@@ -6,7 +6,7 @@ const OnetoonePagination = ({ totalElements, page, size }) => {
 
   const handleChangePage = (event, newPage) => {
     dispatch({
-      type: "FETCH_ONETOONE_PAGING",
+      type: "FETCH_ONETOONELIST_PAGING",
       payload: { page: newPage, size },
     });
   };
@@ -14,7 +14,7 @@ const OnetoonePagination = ({ totalElements, page, size }) => {
   const handleChangeRowsPerPage = (event) => {
     const newSize = parseInt(event.target.value);
     dispatch({
-      type: "FETCH_ONETOONE_PAGING",
+      type: "FETCH_ONETOONELIST_PAGING",
       payload: { page: 0, size: newSize },
     });
   };

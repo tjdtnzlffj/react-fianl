@@ -27,17 +27,34 @@ import CallIcon from "@material-ui/icons/Call";
 import Home from "./components/home/Home";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import { black } from "material-ui/styles/colors";
-import { pink700 } from "material-ui/styles/colors";
 
 import StickyFooter from "./components/Footer";
 import SearchModal from "./components/search/SearchModal";
 
-const Onetoone = lazy(() => import("./components/onetoone/Onetoone"));
-const ContactUs = lazy(() => import("./components/contact-us/ContactUs"));
-const Detail = lazy(() => import("./pages/onetoone/OnetooneDetail"));
-const SaveForm = lazy(() => import("./pages/onetoone//SaveForm"));
-const UpdateForm = lazy(() => import("./pages/onetoone/UpdateForm"));
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import createSagaMiddleware from "redux-saga";
+import rootReducer from "./components/redux/reducers/index";
+import rootSaga from "./components/redux/sagas/index";
+
+const sagaMiddleWare = createSagaMiddleware();
+
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleWare));
+
+sagaMiddleWare.run(rootSaga);
+
+const Onetoone = lazy(() => import("./components/onetoone-redux/Onetoone"));
+const Contact = lazy(() => import("./components/contact-us/ContactUs"));
+const Detail = lazy(() => import("./components/onetoone-redux/OnetooneDetail"));
+const SaveForm = lazy(() =>
+	import("./components/onetoone-redux/OnetooneSaveForm")
+);
+const UpdateForm = lazy(() =>
+	import("./components/onetoone-redux/OnetooneUpdateForm")
+);
+const AnswerForm = lazy(() =>
+	import("./components/onetoone-redux/OnetooneAnswerForm")
+);
 
 const drawerWidth = "240px";
 
@@ -83,10 +100,10 @@ function App() {
 	const theme = createTheme({
 		palette: {
 			primary: {
-				main: black,
+				main: "#2F576B",
 			},
 			secondary: {
-				main: pink700,
+				main: "#ffc107",
 			},
 		},
 	});
@@ -95,8 +112,7 @@ function App() {
 		setMobileOpen(!mobileOpen);
 	};
 
-	const handleModalOpen = (event) => {
-		console.log('modalhandle 실행');
+	const handleModalOpen = () => {
 		setModalOpen(true);
 	}
 
@@ -116,7 +132,7 @@ function App() {
 						<ListItemText>Home</ListItemText>
 					</ListItem>
 				</Link>
-				<ListItem button onClick={(event) => { handleModalOpen(event) }}>
+				<ListItem button onClick={() => { handleModalOpen() }}>
 					<ListItemIcon>
 						<SearchIcon />
 					</ListItemIcon>
@@ -143,78 +159,87 @@ function App() {
 	);
 
 	return (
-		<ThemeProvider theme={theme}>
-			<Router>
-				<div className={classes.root}>
-					<header>
-						<AppBar position="fixed">
-							<Toolbar>
-								<IconButton
-									color="inherit"
-									edge="start"
-									className={classes.menuButton}
-									onClick={handlerDrawerToggle}
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<Router>
+					<div className={classes.root}>
+						<header>
+							<AppBar position="fixed">
+								<Toolbar>
+									<IconButton
+										color="inherit"
+										edge="start"
+										className={classes.menuButton}
+										onClick={handlerDrawerToggle}
+									>
+										<MenuIcon />
+									</IconButton>
+									<Typography variant="h6">
+										<Link to="/" className={classes.title}>
+											BBangDuck
+										</Link>
+									</Typography>
+									<Hidden mdDown implementation="css">
+										<Tabs className={classes.tabs} fullWidth={true}>
+											<Tab label="Home" component={Link} to="/"></Tab>
+											<Tab label="Search" onClick={() => { handleModalOpen() }}></Tab>
+											<Tab label="Community"></Tab>
+											<Tab
+												label="1:1 Q&A"
+												component={Link}
+												to="/onetoone"
+											></Tab>
+											<Tab
+												label="Contact Us"
+												component={Link}
+												to="/contact-us"
+											></Tab>
+										</Tabs>
+									</Hidden>
+								</Toolbar>
+							</AppBar>
+							<Hidden lgUp implementation="css">
+								<Drawer
+									variant="temporary"
+									open={mobileOpen}
+									classes={{ paper: classes.drawerPaper }}
+									onClose={handlerDrawerToggle}
+									position="right"
 								>
-									<MenuIcon />
-								</IconButton>
-								<Typography variant="h6">
-									<Link to="/" className={classes.title}>
-										BBangDuck
-									</Link>
-								</Typography>
-								<Hidden mdDown implementation="css">
-									<Tabs className={classes.tabs} fullWidth={true}>
-										<Tab label="Home" component={Link} to="/"></Tab>
-										<Tab label="Search" onClick={(event) => {
-											handleModalOpen(event)
-										}}></Tab>
-										<Tab label="Community" to="/"></Tab>
-										<Tab label="1:1 Q&A" component={Link} to="/onetoone"></Tab>
-										<Tab
-											label="Contact Us"
-											component={Link}
-											to="/contact-us"
-										></Tab>
-									</Tabs>
-								</Hidden>
-							</Toolbar>
-						</AppBar>
-						<Hidden lgUp implementation="css">
-							<Drawer
-								variant="temporary"
-								open={mobileOpen}
-								classes={{ paper: classes.drawerPaper }}
-								onClose={handlerDrawerToggle}
-								position="right"
-							>
-								{drawer}
-							</Drawer>
-						</Hidden>
-					</header>
-					<main className={classes.content}>
-						<div className={classes.toolbar} />
-						<Suspense fallback={<div>로딩중입니다...</div>}>
-							<Switch>
-								<Route path="/" component={Home} exact></Route>
-								<Route path="/onetoone" component={Onetoone} exact></Route>
-								<Route path="/contact-us" component={ContactUs} exact></Route>
-								<Route path="/onetoone/:id" component={Detail} exact></Route>
-								<Route path="/saveForm" component={SaveForm} exact></Route>
-								<Route
-									path="/updateForm/:id"
-									component={UpdateForm}
-									exact
-								></Route>
-							</Switch>
-						</Suspense>
-						<SearchModal modalOpen={modalOpen} modalClose={handleModalClose} />
-					</main>
-				</div>
-				<div>
-					<StickyFooter />
-				</div>
-			</Router>
-		</ThemeProvider>
+									{drawer}
+								</Drawer>
+							</Hidden>
+						</header>
+						<main className={classes.content}>
+							<div className={classes.toolbar} />
+							<Suspense fallback={<div>로딩중입니다...</div>}>
+								<Switch>
+									<Route path="/" component={Home} exact></Route>
+									<Route path="/onetoone" component={Onetoone} exact></Route>
+									<Route path="/contact-us" component={Contact} exact></Route>
+									<Route path="/onetoone/:id" component={Detail} exact></Route>
+									<Route path="/saveForm" component={SaveForm} exact></Route>
+									<Route
+										path="/updateForm/:id"
+										component={UpdateForm}
+										exact
+									></Route>
+									<Route
+										path="/answerForm/:id"
+										component={AnswerForm}
+										exact
+									></Route>
+								</Switch>
+							</Suspense>
+							<SearchModal modalOpen={modalOpen} modalClose={handleModalClose} />
+						</main>
+					</div>
+					<div>
+						<StickyFooter />
+					</div>
+				</Router>
+			</ThemeProvider>
+		</Provider>
 	);
 }
 
