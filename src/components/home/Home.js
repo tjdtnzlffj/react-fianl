@@ -47,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
 
-	const [weeklyBestData, setWeeklyBestData] = useState([]);
+
+	const [weeklyBestData, setWeeklyBestData] = useState([{ postImage: '', postTitle: '', postContent: '' }]);
 
 	const classes = useStyles();
 
