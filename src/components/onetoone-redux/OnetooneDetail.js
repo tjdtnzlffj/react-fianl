@@ -133,7 +133,15 @@ const OnetooneDetail = (props) => {
     return onetoone.answer[0] === undefined || null || "" ? (
       <br />
     ) : (
-      <img src={onetoone.answer[0].answerPic} alt="answerPic" />
+      <img
+        src={onetoone.answer[0].answerPic}
+        style={{
+          objectFit: "scale-down",
+          width: "400px",
+          height: "400px",
+        }}
+        alt="answerPic"
+      />
     );
   }
 
