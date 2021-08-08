@@ -15,8 +15,6 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import BusinessIcon from '@material-ui/icons/Business';
-import developerImage from './myphoto.jpg';
-
 
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 

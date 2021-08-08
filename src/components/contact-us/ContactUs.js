@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import ManagerInfoCard from './ManagerInfoCard';
 
 //api
-import api from '../../api/managerApi';
+import api from '../api/manager';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

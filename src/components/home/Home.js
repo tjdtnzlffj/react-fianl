@@ -13,7 +13,7 @@ import Carousel from './Carousel';
 import ThumbNailCard from './ThumbNailCard';
 
 //server api
-import api from '../../api/weeklyPostApi';
+import api from '../api/weeklyPost';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -57,9 +57,7 @@ const Home = () => {
 		const getWeeklyBestData = async () => {
 			const result = await api.fetchWeeklyBest();
 			setWeeklyBestData(result.data);
-			console.log(result.data);
 		}
-
 		getWeeklyBestData();
 	},
 		[]);
