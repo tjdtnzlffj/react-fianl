@@ -24,7 +24,7 @@ const Contact = () => {
         <Grid item lg={1} />
       </Hidden>
       <Grid item xs={12} sm={12} lg={10}>
-        <Paper className={classes.paper} style={{ height: "80vh" }}>
+        <Paper className={classes.paper} style={{ height: "75vh" }}>
           <br />
           <h2 style={{ textAlign: "center", marginLeft: "50px" }}>
             Contact Us

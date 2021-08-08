@@ -37,7 +37,7 @@ const Home = () => {
         <Grid item lg={1} />
       </Hidden>
       <Grid item xs={12} sm={12} lg={10}>
-        <Paper className={classes.paper} style={{ height: "40vh" }}>
+        <Paper className={classes.paper} style={{ height: "50vh" }}>
           홈화면입니다.
         </Paper>
       </Grid>
