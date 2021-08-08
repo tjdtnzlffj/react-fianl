@@ -130,16 +130,25 @@ const OnetooneDetail = (props) => {
   }
 
   function AnswerPic() {
-    return onetoone.answer[0] === undefined || null ? (
+    return onetoone.answer[0] === undefined || null || "" ? (
+      <br />
+    ) : (
+      <img src={onetoone.answer[0].answerPic} alt="answerPic" />
+    );
+  }
+
+  function QnaPic() {
+    return onetoone.qnaPic === "" ? (
       <br />
     ) : (
       <img
-        src={onetoone.answer[0].answerPic}
-        alt="answerPic"
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = "image_path_here";
+        style={{
+          objectFit: "scale-down",
+          width: "400px",
+          height: "400px",
         }}
+        src={onetoone.qnaPic}
+        alt="qnaPic"
       />
     );
   }
@@ -159,19 +168,7 @@ const OnetooneDetail = (props) => {
               {onetoone.qnaAuthor} <br /> {onetoone.qnaDate}
             </h3>
             <h3>{onetoone.qnaContent}</h3>
-            <img
-              style={{
-                objectFit: "scale-down",
-                width: "400px",
-                height: "400px",
-              }}
-              src={onetoone.qnaPic}
-              alt="qnaPic"
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "image_path_here";
-              }}
-            />
+            <QnaPic />
             <div style={{ paddingLeft: "30%" }}>
               <Button
                 variant="contained"
