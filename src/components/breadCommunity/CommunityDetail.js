@@ -10,8 +10,11 @@ const CommunityDetail = (props) => {
 
   const [board, setBoard] = useState({
     id: "",
-    title: "",
-    content: "",
+    postTitle: "",
+    postContent: "",
+    postPwd: "",
+    postDate: "",
+    postAuthor: "",
   });
 
   useEffect(() => {
@@ -50,8 +53,12 @@ const CommunityDetail = (props) => {
         삭제
       </Button>
       <hr />
-      <h2>{board.title}</h2>
-      <h4>{ReactHtmlParser(board.content)}</h4>
+      <h2>{board.postTitle}</h2>
+      <h2>
+        {board.postDate}
+        <br /> {board.postAuthor}
+      </h2>
+      <h4>{ReactHtmlParser(board.postContent)}</h4>
       <div>
         <Button
           variant="outlined"

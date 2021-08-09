@@ -20,8 +20,11 @@ const useStyles = makeStyles((theme) => ({
 
 const CommunityForm = (props) => {
   const [board, setBoard] = useState({
-    title: "",
-    content: "",
+    postTitle: "",
+    postContent: "",
+    postDate: "",
+    postPwd: "",
+    postAuthor: "",
   });
 
   const changeValue = (e) => {
@@ -65,7 +68,35 @@ const CommunityForm = (props) => {
           type="text"
           label="제목을 입력해주세요."
           onChange={changeValue}
-          name="title"
+          name="postTitle"
+          size="small"
+          variant="outlined"
+          style={{
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
+          }}
+        />
+        <TextField
+          type="text"
+          label="비밀번호를 입력해주세요."
+          onChange={changeValue}
+          name="postPwd"
+          size="small"
+          variant="outlined"
+          style={{
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
+          }}
+        />
+        <TextField
+          type="text"
+          label="닉네임을 입력해주세요."
+          onChange={changeValue}
+          name="postAuthor"
           size="small"
           variant="outlined"
           style={{
@@ -94,7 +125,7 @@ const CommunityForm = (props) => {
             setBoard({
               ...board,
 
-              content: data,
+              postContent: data,
             });
           }}
           onBlur={(event, editor) => {
