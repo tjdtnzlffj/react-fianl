@@ -36,7 +36,7 @@ const CommunityDetail = (props) => {
   };
 
   const updateBoard = () => {
-    props.history.push("/updateForm/" + id);
+    props.history.push("/CommunityUpdateForm/" + id);
   };
 
   return (

@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { makeStyles } from '@material-ui/core/styles';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import { Box } from '@material-ui/core';
+import { useEffect, useState } from "react";
+import { Button } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { makeStyles } from "@material-ui/core/styles";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { Box } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   formwrapper: {
-    width: '56%',
-    margin: '0 auto',
-    marginTop: '5px',
+    width: "56%",
+    margin: "0 auto",
+    marginTop: "5px",
   },
   inputtextbox: {
-    textAlign: 'center',
+    textAlign: "center",
   },
 }));
 
@@ -21,8 +21,11 @@ const UpdateForm = (props) => {
   const id = props.match.params.id;
 
   const [board, setBoard] = useState({
-    title: '',
-    content: '',
+    postTitle: "",
+    postContent: "",
+    postDate: "",
+    postPwd: "",
+    postAuthor: "",
   });
 
   useEffect(() => {
@@ -43,9 +46,9 @@ const UpdateForm = (props) => {
   const addBoard = (e) => {
     e.preventDefault();
     fetch(`${process.env.REACT_APP_API_BASE}/board/` + id, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+        "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(board),
     })
@@ -59,9 +62,9 @@ const UpdateForm = (props) => {
       .then((res) => {
         console.log(res);
         if (res !== null) {
-          props.history.push('/board/');
+          props.history.push("/board/");
         } else {
-          alert('게시물 수정에 실패하였습니다');
+          alert("게시물 수정에 실패하였습니다");
         }
       });
   };
@@ -72,20 +75,48 @@ const UpdateForm = (props) => {
       <Box className={classes.inputtextbox}>
         <TextField
           type="text"
+          label="제목을 입력해주세요."
           onChange={changeValue}
-          name="title"
+          name="postTitle"
           size="small"
           variant="outlined"
-          value={board.title}
           style={{
-            marginBottom: '15px',
-            marginRight: '310px',
-            marginTop: '20px',
-            width: '25%',
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
+          }}
+        />
+        <TextField
+          type="text"
+          label="비밀번호를 입력해주세요."
+          onChange={changeValue}
+          name="postPwd"
+          size="small"
+          variant="outlined"
+          style={{
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
+          }}
+        />
+        <TextField
+          type="text"
+          label="닉네임을 입력해주세요."
+          onChange={changeValue}
+          name="postAuthor"
+          size="small"
+          variant="outlined"
+          style={{
+            marginBottom: "15px",
+            marginRight: "310px",
+            marginTop: "20px",
+            width: "25%",
           }}
         />
         <Button
-          style={{ width: '7%', marginTop: '20px' }}
+          style={{ width: "7%", marginTop: "20px" }}
           variant="contained"
           color="default"
           startIcon={<CloudUploadIcon />}
@@ -104,14 +135,14 @@ const UpdateForm = (props) => {
             setBoard({
               ...board,
 
-              content: data,
+              postContent: data,
             });
           }}
           onBlur={(event, editor) => {
-            console.log('Blur.', editor);
+            console.log("Blur.", editor);
           }}
           onFocus={(event, editor) => {
-            console.log('Focus.', editor);
+            console.log("Focus.", editor);
           }}
         />
       </Box>
