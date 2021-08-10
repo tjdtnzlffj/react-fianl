@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import BreadItem from "./CommunityItem";
-import { Box } from "@material-ui/core";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 
@@ -38,7 +36,13 @@ const Community = () => {
           history.push("/communityForm");
         }}
       >
-        <CKEditor editor={ClassicEditor} />
+        <Button
+          variant="outlined"
+          color="primary"
+          style={{ marginTop: "40px", marginLeft: "85%" }}
+        >
+          Write
+        </Button>
       </Box>
       {boards.map((board) => (
         <BreadItem key={board.id} board={board} />

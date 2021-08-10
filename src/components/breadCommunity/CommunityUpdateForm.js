@@ -34,7 +34,7 @@ const UpdateForm = (props) => {
       .then((res) => {
         setBoard(res);
       });
-  }, []);
+  }, [id]);
 
   const changeValue = (e) => {
     setBoard({
@@ -75,50 +75,35 @@ const UpdateForm = (props) => {
       <Box className={classes.inputtextbox}>
         <TextField
           type="text"
-          label="제목을 입력해주세요."
+          label="제목"
           onChange={changeValue}
           name="postTitle"
           size="small"
           variant="outlined"
-          style={{
-            marginBottom: "15px",
-            marginRight: "310px",
-            marginTop: "20px",
-            width: "25%",
-          }}
+          style={{ margin: "40px 10px", width: "350px" }}
         />
         <TextField
           type="text"
-          label="비밀번호를 입력해주세요."
-          onChange={changeValue}
-          name="postPwd"
-          size="small"
-          variant="outlined"
-          style={{
-            marginBottom: "15px",
-            marginRight: "310px",
-            marginTop: "20px",
-            width: "25%",
-          }}
-        />
-        <TextField
-          type="text"
-          label="닉네임을 입력해주세요."
+          label="닉네임"
           onChange={changeValue}
           name="postAuthor"
           size="small"
           variant="outlined"
-          style={{
-            marginBottom: "15px",
-            marginRight: "310px",
-            marginTop: "20px",
-            width: "25%",
-          }}
+          style={{ margin: "40px 10px", width: "150px" }}
+        />
+        <TextField
+          type="text"
+          label="비밀번호"
+          onChange={changeValue}
+          name="postPwd"
+          size="small"
+          variant="outlined"
+          style={{ margin: "40px 10px", width: "150px" }}
         />
         <Button
-          style={{ width: "7%", marginTop: "20px" }}
+          style={{ width: "7%", marginTop: "40px", marginLeft: "5px" }}
           variant="contained"
-          color="default"
+          color="primary"
           startIcon={<CloudUploadIcon />}
           onClick={addBoard}
         >

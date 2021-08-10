@@ -23,20 +23,31 @@ const CommunityDetail = (props) => {
       .then((res) => {
         setBoard(res);
       });
-  }, []);
+  }, [id]);
 
   const removeBoard = () => {
-    fetch(`${process.env.REACT_APP_API_BASE}/board/` + id, {
-      method: "DELETE",
-    })
-      .then((res) => res.text())
-      .then((res) => {
-        props.history.push("/board");
-      });
+    const InputpwdTest = prompt("비밀번호를 입력하세요");
+    if (parseInt(InputpwdTest) === parseInt(board.postPwd)) {
+      fetch(`${process.env.REACT_APP_API_BASE}/board/` + id, {
+        method: "DELETE",
+      })
+        .then((res) => res.text())
+        .then((res) => {
+          props.history.push("/board");
+        });
+      alert("삭제되었습니다.");
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
   };
 
   const updateBoard = () => {
-    props.history.push("/CommunityUpdateForm/" + id);
+    const InputpwdTest = prompt("비밀번호를 입력하세요");
+    if (parseInt(InputpwdTest) === parseInt(board.postPwd)) {
+      props.history.push("/CommunityUpdateForm/" + id);
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (
