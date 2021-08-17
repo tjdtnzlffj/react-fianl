@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: 'left',
 	},
 	thumbContent: {
-		maxHeight: '4rem',
+		height: '4rem',
 		overflow: 'hidden',
 		textAlign: 'left',
 		fontSize: '0.9rem',
@@ -46,21 +46,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ThumbNailCard = ({ thumbNailData }) => {
 	const classes = useStyles();
-
-	//useHistory() -> 코드적인방법으로 경로제어(코드를 이용하여 경로제어를 할 수 있음) <-> 선언하는 방법으로 경로제어(Link 컴포넌트는 선언을 해서 이동한 것)
-	//경로마다 기록을 다 남김
-	//history.push("/todo");
-
-	//goBack(goBack할 단계); 아래는 1단계 뒤로간다.
-	//history.goBack('-1');
-
-	//replce(덮어씌울 경로) : 현재 경로를 새로운 경로로 덮어씌움
-	//history.replace('/todo');
 	const history = useHistory();
 
 	const handleClick = () => {
 		console.log('history 객체 정체 체크 : ' + history);
-		history.push('/contact-us');
+		history.push(`/board/${thumbNailData.id}`);
 	}
 
 	return (
@@ -90,7 +80,7 @@ const ThumbNailCard = ({ thumbNailData }) => {
 					size="small"
 					style={{ backgroundColor: 'black', color: 'white', borderRadius: '0px', }}
 					onClick={handleClick}
-				>Learn More</Button>
+				>더 보기 &gt;</Button>
 			</CardActions>
 		</Card>
 	);

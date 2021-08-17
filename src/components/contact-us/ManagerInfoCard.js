@@ -19,123 +19,113 @@ import BusinessIcon from "@material-ui/icons/Business";
 import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "280px",
-    marginBottom: "20px",
-  },
-  media: {
-    marginTop: "30px",
-    marginBottom: "20px",
-  },
-  title: {
-    marginBottom: "25px",
-  },
-  developerInfo: {
-    display: "flex",
-    margin: "7px 0",
-  },
-  infoIcon: {
-    marginRight: "5px",
-    color: "grey",
-  },
-  actionIconBt: {
-    backgroundColor: "#3a3636",
-    padding: "9px",
-  },
-  actionIcon: {
-    color: "white",
-  },
+	root: {
+		width: '280px',
+		marginBottom: '20px',
+
+	},
+	media: {
+		marginTop: '30px',
+		marginBottom: '20px',
+		height: '135px',
+	},
+	title: {
+		marginBottom: '25px',
+	},
+	developerInfo: {
+		display: 'flex',
+		margin: '7px 0',
+	},
+	infoIcon: {
+		marginRight: '5px',
+		color: 'grey',
+	},
+	actionIconBt: {
+		backgroundColor: '#3a3636',
+		padding: '9px',
+	},
+	actionIcon: {
+		color: 'white',
+	},
 }));
 
 const ManagerInfoCard = ({ manager }) => {
-  const classes = useStyles();
 
-  return (
-    <Card className={classes.root}>
-      <CardContent style={{ paddingBottom: "0" }}>
-        {/* 관리자 이미지 */}
-        <div className={classes.media}>
-          <img
-            src={manager.image}
-            alt="managerImg"
-            style={{
-              width: "100px",
-              height: "auto",
-              borderRadius: "70%",
-              overflow: "hidden",
-            }}
-          />
-        </div>
+	const classes = useStyles();
 
-        <Divider
-          variant="middle"
-          style={{
-            margin: "25px auto",
-            border: "0",
-            height: "5px",
-            width: "25px",
-          }}
-        />
+	return (
+		<Card className={classes.root}>
+			<CardContent style={{ paddingBottom: '0' }}>
 
-        {/* 관리자 이름 & 직무?? */}
-        <div className={classes.title}>
-          <Typography style={{ fontWeight: "bold", fontSize: "1.2rem" }}>
-            {manager.name}
-          </Typography>
+				{/* 관리자 이미지 */}
+				<div className={classes.media}>
+					<img src={manager.image} alt="manager face" style={{ width: 'auto', height: '150px', borderRadius: '70%', overflow: 'hidden' }} />
+				</div>
 
-          <Typography
-            variant="subtitle1"
-            style={{ color: "#a6a6a6", fontSize: "0.99rem" }}
-          >
-            {manager.job}
-          </Typography>
-        </div>
+				<Divider variant="middle" style={{ margin: '25px auto', border: '0', height: '5px', width: '25px' }} />
 
-        {/* 관리자 상세 정보(지역, 소속, 이메일주소) */}
-        <div style={{ textAlign: "left" }}>
-          {/* 지역 */}
-          <div className={classes.developerInfo}>
-            <LocationOnIcon className={classes.infoIcon} />
-            <Typography style={{ fontSize: "0.9rem" }}>
-              {manager.loc}
-            </Typography>
-          </div>
+				{/* 관리자 이름 & 직무?? */}
+				<div className={classes.title}>
+					<Typography style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>
+						{manager.name}
+					</Typography>
 
-          {/* 소속 */}
-          <div className={classes.developerInfo}>
-            <BusinessIcon className={classes.infoIcon} />
-            <Typography style={{ fontSize: "0.9rem" }}>
-              {manager.dept}
-            </Typography>
-          </div>
+					<Typography variant="subtitle1" style={{ color: '#a6a6a6', fontSize: '0.99rem' }}>
+						{manager.job}
+					</Typography>
+				</div>
 
-          {/* 이메일 주소 */}
-          <div className={classes.developerInfo}>
-            <MailOutlineIcon className={classes.infoIcon} />
-            <Typography style={{ fontSize: "0.9rem" }}>
-              {manager.eaddress}
-            </Typography>
-          </div>
-        </div>
-      </CardContent>
+				{/* 관리자 상세 정보(지역, 소속, 이메일주소) */}
+				<div style={{ textAlign: 'left' }}>
 
-      {/* 관리자랑 관련된 곳으로 연결되는 아이콘버튼 */}
-      <CardActions style={{ paddingTop: "15px", justifyContent: "center" }}>
-        <IconButton className={classes.actionIconBt}>
-          <MailOutlineRoundedIcon className={classes.actionIcon} />
-        </IconButton>
-        <IconButton className={classes.actionIconBt}>
-          <MessageIcon className={classes.actionIcon} />
-        </IconButton>
-        <IconButton className={classes.actionIconBt}>
-          <FacebookIcon className={classes.actionIcon} />
-        </IconButton>
-        <IconButton className={classes.actionIconBt}>
-          <TwitterIcon className={classes.actionIcon} />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
-};
+					{/* 지역 */}
+					<div className={classes.developerInfo}>
+						<LocationOnIcon className={classes.infoIcon} />
+						<Typography style={{ fontSize: '0.9rem' }}>
+							{manager.loc}
+						</Typography>
+					</div>
+
+					{/* 소속 */}
+					<div className={classes.developerInfo}>
+						<BusinessIcon className={classes.infoIcon} />
+						<Typography style={{ fontSize: '0.9rem' }}>
+							{manager.dept}
+						</Typography>
+					</div>
+
+					{/* 이메일 주소 */}
+					<div className={classes.developerInfo}>
+						<MailOutlineIcon className={classes.infoIcon} />
+						<Typography style={{ fontSize: '0.9rem' }}>
+							{manager.eaddress}
+						</Typography>
+					</div>
+
+				</div>
+			</CardContent >
+
+			{/* 관리자랑 관련된 곳으로 연결되는 아이콘버튼 */}
+			<CardActions style={{ paddingTop: '15px', justifyContent: 'center', }}>
+				<IconButton className={classes.actionIconBt} >
+					<MailOutlineRoundedIcon className={classes.actionIcon} />
+				</IconButton>
+				<IconButton className={classes.actionIconBt}>
+					<MessageIcon className={classes.actionIcon} />
+				</IconButton>
+				<IconButton className={classes.actionIconBt}>
+					<FacebookIcon className={classes.actionIcon} />
+				</IconButton >
+				<IconButton className={classes.actionIconBt}>
+					<TwitterIcon className={classes.actionIcon} />
+				</IconButton>
+			</CardActions>
+
+		</Card >
+
+	);
+}
 
 export default ManagerInfoCard;
+
+

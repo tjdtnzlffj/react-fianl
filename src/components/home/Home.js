@@ -13,7 +13,7 @@ import Carousel from './Carousel';
 import ThumbNailCard from './ThumbNailCard';
 
 //server api
-import api from '../api/weeklyPost';
+import api from '../api/home';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -47,19 +47,17 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
 
-
-	const [weeklyBestData, setWeeklyBestData] = useState([{ postImage: '', postTitle: '', postContent: '' }]);
+	const [bestPostList, setBestPostList] = useState([{ id: '', postImage: '', postTitle: '', postContent: '' }]);
 
 	const classes = useStyles();
 
 	//api 호출
 	useEffect(() => {
-
-		const getWeeklyBestData = async () => {
-			const result = await api.fetchWeeklyBest();
-			setWeeklyBestData(result.data);
+		const getBestPostList = async () => {
+			const result = await api.fetchBestPostList();
+			setBestPostList(result.data);
 		}
-		getWeeklyBestData();
+		getBestPostList();
 	},
 		[]);
 
@@ -89,15 +87,15 @@ const Home = () => {
 						<Hidden smDown>
 							<div className={classes.thumbNailContainer}>
 								{
-									weeklyBestData.map((item) =>
-										<ThumbNailCard key={item.postNum} thumbNailData={item} />)
+									bestPostList.map((post) =>
+										<ThumbNailCard key={post.id} thumbNailData={post} />)
 								}
 							</div>
 						</Hidden>
 
-						{/* viewport 변경시 carousel로 썸네일 보여줌 */}
+						{/* viewport sm이하이면 carousel로 썸네일 보여줌 */}
 						<Hidden mdUp>
-							<Carousel weeklyBestData={weeklyBestData} />
+							<Carousel bestPostList={bestPostList} />
 						</Hidden>
 
 					</Paper>
