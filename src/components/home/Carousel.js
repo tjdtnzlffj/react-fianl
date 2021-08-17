@@ -19,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Carousel1 = ({ weeklyBestData }) => {
+const Carousel1 = ({ bestPostList }) => {
 
 	//현재 슬라이드
 	const [activeStep, setActiveStep] = useState(0);
 
 	//slide 개수
-	const maxSteps = weeklyBestData.length;
+	const maxSteps = bestPostList.length;
 
 	const classes = useStyles();
 	const theme = useTheme();
@@ -42,7 +42,7 @@ const Carousel1 = ({ weeklyBestData }) => {
 		<div className={classes.root}>
 
 			{/* 썸네일 */}
-			<ThumbNailCard thumbNailData={weeklyBestData[activeStep]} />
+			<ThumbNailCard thumbNailData={bestPostList[activeStep]} />
 
 			{/* 썸네일 변경 하는 부분 */}
 			<MobileStepper

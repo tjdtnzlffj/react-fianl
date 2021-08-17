@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	media: {
 		marginTop: '30px',
 		marginBottom: '20px',
+		height: '135px',
 	},
 	title: {
 		marginBottom: '25px',
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ManagerInfoCard = ({ manager }) => {
+
 	const classes = useStyles();
 
 	return (
@@ -57,7 +59,7 @@ const ManagerInfoCard = ({ manager }) => {
 
 				{/* 관리자 이미지 */}
 				<div className={classes.media}>
-					<img src={manager.image} style={{ width: '100px', height: 'auto', borderRadius: '70%', overflow: 'hidden', }} />
+					<img src={manager.image} alt="manager face" style={{ width: 'auto', height: '150px', borderRadius: '70%', overflow: 'hidden' }} />
 				</div>
 
 				<Divider variant="middle" style={{ margin: '25px auto', border: '0', height: '5px', width: '25px' }} />
