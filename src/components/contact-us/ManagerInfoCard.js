@@ -1,22 +1,22 @@
 //card ui 모듈
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import { Divider, IconButton } from '@material-ui/core';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import { Divider, IconButton } from "@material-ui/core";
 
 //icon
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import MessageIcon from '@material-ui/icons/Message';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import MessageIcon from "@material-ui/icons/Message";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
 
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import BusinessIcon from '@material-ui/icons/Business';
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import BusinessIcon from "@material-ui/icons/Business";
 
-import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
+import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -127,3 +127,5 @@ const ManagerInfoCard = ({ manager }) => {
 }
 
 export default ManagerInfoCard;
+
+

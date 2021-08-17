@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 		marginBottom: '50px',
 		cursor: 'pointer',
 	},
+
 }));
 
 const Community = () => {
@@ -47,6 +48,7 @@ const Community = () => {
 			})}
 		</div>
 	);
+
 };
 
 export default Community;

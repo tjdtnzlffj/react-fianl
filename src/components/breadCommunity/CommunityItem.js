@@ -51,11 +51,9 @@ const CommunityItem = ({ board, commentList }) => {
 				elevation={2}
 				className={classes.boardItem}
 			>
-
 				{/* 게시글 title */}
 				<h3 style={{ textAlign: "center" }}>{board.postTitle}</h3>
 				<hr />
-
 				{/* 게시글 이미지 */}
 				<div className={classes.imgContainer} onClick={() => {
 					// history.push("/board/" + id);
