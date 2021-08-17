@@ -26,6 +26,7 @@ const community = (state = initialState, action) => {
         board.id === action.payload.id ? action.payload : board
       );
     }
+
     default:
       return state;
   }
