@@ -39,7 +39,12 @@ const CommunityDetail = (props) => {
   }, []);
 
   const updateBoard = () => {
-    props.history.push("/CommunityUpdateForm/" + id);
+    const InputpwdTest = prompt("비밀번호를 입력하세요");
+    if (parseInt(InputpwdTest) === parseInt(board.postPwd)) {
+      props.history.push("/CommunityUpdateForm/" + id);
+    } else {
+      alert("비밀번호가 일치하지 않습니다.");
+    }
   };
 
   return (
