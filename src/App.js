@@ -38,7 +38,6 @@ import { Provider } from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "./components/redux/reducers/index";
 import rootSaga from "./components/redux/sagas/index";
-import Search from "./components/search/Search";
 
 const sagaMiddleWare = createSagaMiddleware();
 
@@ -203,7 +202,6 @@ function App() {
 												label="Search"
 												onClick={() => {
 													modalRef.current.handleOpen();
-													// handleModalOpen();
 												}}
 											></Tab>
 											<Tab label="Community" component={Link} to="/board"></Tab>

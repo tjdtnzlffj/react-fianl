@@ -1,10 +1,10 @@
-import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import Modal from '@material-ui/core/Modal';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../search/Search';
-const ModalPage = forwardRef(({ }, ref) => {
+const ModalPage = forwardRef((props, ref) => {
 	const modalState = useSelector(state => state.etc);
 	const dispatch = useDispatch();
 	useImperativeHandle(ref, () => ({
