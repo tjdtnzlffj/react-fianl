@@ -1,58 +1,71 @@
 import { useEffect } from "react";
 import BreadItem from "./CommunityItem";
 import { Button } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import queryString from 'query-string';
+
 
 const Community = () => {
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const commentDispatch = useDispatch();
-  useEffect(() => {
-    dispatch({ type: "FETCH_BOARDLSIT" });
-    commentDispatch({ type: "FETCH_COMMENTLIST" });
-  }, [dispatch, commentDispatch]);
 
-  const data = useSelector((state) => state.community);
-  const commentList = useSelector((state) => state.comment);
+	const history = useHistory();
+	const dispatch = useDispatch();
+	const commentDispatch = useDispatch();
+	const boardList = useSelector(state => state.community);
+	const { search } = useLocation();
 
-  console.log("-=--data---");
-  console.log(data);
-  return (
-    <>
-      <div>
-        <Button
-          variant="outlined"
-          color="primary"
-          style={{
-            marginTop: "40px",
-            marginLeft: "31.5%",
-            marginBottom: "2px",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            history.push("/communityForm");
-          }}
-        >
-          글 작성
-        </Button>
+	//queryString(ex - ?keyword=12345)에 찾고 싶은 키워드? 키? 가 없으면 undefined가 뜬다.
+	const { keyword } = queryString.parse(search);
+	useEffect(() => {
+		dispatch({ type: "FETCH_BOARDLSIT" });
+		commentDispatch({ type: "FETCH_COMMENTLIST" });
+	}, [dispatch, commentDispatch]);
 
-        {data.map((board) => {
-          const matchedCommentList = commentList.filter(
-            (comment) => Number(comment.postNo) === board.id
-          );
-          // const matchedCommentList = getMatchedCommentList(commentList, board.id);
-          return (
-            <BreadItem
-              key={board.id}
-              board={board}
-              commentList={matchedCommentList}
-            />
-          );
-        })}
-      </div>
-    </>
-  );
+
+
+	return (
+		<>
+			<div>
+				<Button
+					variant="outlined"
+					color="primary"
+					style={{
+						marginTop: "40px",
+						marginLeft: "31.5%",
+						marginBottom: "2px",
+						cursor: "pointer",
+					}}
+					onClick={() => {
+						history.push("/communityForm");
+					}}
+				>
+					글 작성
+				</Button>
+
+				{
+					keyword ?
+						boardList.filter(post => post.postTitle.includes(keyword)).map((board) => {
+
+							return (
+								<BreadItem
+									key={board.id}
+									board={board}
+								/>
+							);
+						})
+						:
+						boardList.map((board) => {
+
+							return (
+								<BreadItem
+									key={board.id}
+									board={board}
+								/>
+							);
+						})}
+			</div>
+		</>
+	);
 };
 
 export default Community;

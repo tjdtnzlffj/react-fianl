@@ -51,21 +51,15 @@ const SearchBar = () => {
 
 	const change = (event) => {
 		if (event.charCode === 13) {
-
 			findKeywordMatchPosts();
-			dispatch({ type: "CLOSE_MODAL", payload: { modalState: false } });
-
-
 		}
 	}
 
 	const findKeywordMatchPosts = () => {
 
-		dispatch({
-			type: "FIND_POST", payload: searchInputRef.current.value
-		});
+		history.push('/board?keyword=' + searchInputRef.current.value);
 		searchInputRef.current.value = '';
-		history.push('/board');
+		dispatch({ type: "CLOSE_MODAL", payload: { modalState: false } });
 	}
 
 	return (
@@ -83,7 +77,7 @@ const SearchBar = () => {
 				inputRef={searchInputRef}
 				onKeyPress={change}
 			/>
-			<Button className={classes.searchBtn} onClick={() => { findKeywordMatchPosts(); dispatch({ type: "CLOSE_MODAL" }); }}>
+			<Button className={classes.searchBtn} onClick={() => { findKeywordMatchPosts(); }}>
 				검색
 			</Button>
 		</div >
