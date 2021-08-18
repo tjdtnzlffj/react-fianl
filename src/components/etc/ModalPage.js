@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Search from '../search/Search';
 const ModalPage = forwardRef(({ }, ref) => {
 	const modalState = useSelector(state => state.etc);
-	const [renderingComponent, setRenderingComponent] = useState('');
 	const dispatch = useDispatch();
 	useImperativeHandle(ref, () => ({
 		handleOpen,
