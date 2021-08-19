@@ -6,7 +6,7 @@ import ChatBubbleOutlineOutlinedIcon from "@material-ui/icons/ChatBubbleOutlineO
 import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import CommentInputBox from "./CommentInputBox";
 import CommentItem from "./CommentItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import comment from "../redux/reducers/comment";
 
 const useStyles = makeStyles({
@@ -37,7 +37,7 @@ const CommentList = ({ like, postNo }) => {
 	const classes = useStyles();
 	const [state, setState] = useState({ open: false, defer: false });
 	const commentList = useSelector(state => state.comment).filter(comment => comment.postNo === postNo);
-
+	const dispatch = useDispatch();
 	const [board, setBoard] = useState({
 		id: "",
 		postLike: "",
@@ -66,7 +66,10 @@ const CommentList = ({ like, postNo }) => {
 			.then((res) => res.json())
 			.then((res) => {
 				alert("추천하셨습니다.");
+				delete res.comment;
+				dispatch({ type: "INCRESE_POSTLIKE", payload: res });
 			});
+
 	};
 
 	return (
