@@ -1,5 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
 
-.pageTitle {
+/* .pageTitle {
 font-family: 'Do Hyeon', sans-serif;
+} */
+
+
+main {
+  font-family: 'Single Day', cursive;
 }

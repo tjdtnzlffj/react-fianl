@@ -17,7 +17,7 @@ const Community = () => {
 	//queryString(ex - ?keyword=12345)에 찾고 싶은 키워드? 키? 가 없으면 undefined가 뜬다.
 	const { keyword } = queryString.parse(search);
 	useEffect(() => {
-		dispatch({ type: "FETCH_BOARDLIST" });
+		// dispatch({ type: "FETCH_BOARDLIST" });
 		commentDispatch({ type: "FETCH_COMMENTLIST" });
 	}, []);
 

@@ -22,6 +22,7 @@ function* fetchBoardList(action) {
 	try {
 
 		const result = yield call(api.fetch);
+		// console.log('fecth 결과' + result.data);
 		yield put({ type: "FETCH_SUCCEEDED_BOARDLIST", payload: result.data });
 	} catch (e) {
 		alert(e.message);
@@ -62,10 +63,22 @@ function* modifyBoard(action) {
 	}
 }
 
+function* increaseLike(action) {
+	try {
+		const result = yield call(api.increaseLike, action.payload);
+		// console.log(result.data);
+		yield put({ type: "INCREASE_POSTLIKE_SUCCEEDED", payload: result.data });
+		// console.log(result.data);
+	} catch (e) {
+		alert(e.message);
+	}
+}
+
 function* communitySaga() {
 	yield takeEvery("ADD_BOARD", addBoard);
 	yield takeEvery("REMOVE_BOARD", removeBoard);
 	yield takeEvery("MODIFY_BOARD", modifyBoard);
+	yield takeEvery("INCRESE_POSTLIKE", increaseLike);
 	yield takeLatest("FETCH_BOARDLIST", fetchBoardList);
 }
 export default communitySaga;

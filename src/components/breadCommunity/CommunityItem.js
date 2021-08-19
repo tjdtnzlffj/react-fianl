@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 		},
 	},
 	contentContainer: {
-		padding: "5px 10px 10px ",
+		padding: "5px 10px",
 	},
 	button: {
 		margin: theme.spacing(1),
@@ -49,7 +49,7 @@ const CommunityItem = ({ board }) => {
 				<div
 					className={classes.imgContainer}
 					onClick={() => {
-						history.push("/board/" + board.id);
+						history.push("/board/" + board.id, board);
 
 					}}
 				>
