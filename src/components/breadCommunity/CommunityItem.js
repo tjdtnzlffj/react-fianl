@@ -36,12 +36,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CommunityItem = ({ board }) => {
+<<<<<<< HEAD
   // const { id } = board;
   // console.log("--id 확인--");
   // console.log(id);
   // console.log(board);
   const history = useHistory();
   const classes = useStyles();
+=======
+	const history = useHistory();
+	const classes = useStyles();
+>>>>>>> upstream/master
 
   return (
     <div className={classes.breadcontainer}>

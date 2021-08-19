@@ -24,6 +24,7 @@ const CommentItem = ({ comment }) => {
 	const classes = useStyles();
 	const [modifyState, setModifyState] = useState(false);
 	const [pwdDialState, setPwdDialState] = useState(false);
+	const [pwdDialPurpose, setPwdDialPurpose] = useState('');
 	const inputModifyingComment = useRef();
 	const dispatch = useDispatch();
 
@@ -31,19 +32,29 @@ const CommentItem = ({ comment }) => {
 		setPwdDialState(!pwdDialState);
 	}
 
-	const checkPwd = (event, inputPwd) => {
+	const openPwdDialog = (purpose) => {
+		setPwdDialState(true);
+		setPwdDialPurpose(purpose);
+	}
+
+	const checkPwd = (event, inputPwd, purpose) => {
 		if (event.charCode === 13 || event._reactName === "onClick") {
-			// console.log('---check pwd 함수 실행 ---');
-			// console.log('pwd input값 체크 : ' + inputPwd);
+
 			if (!(inputPwd === '')) {
 				if (inputPwd === comment.pwd) {
-					// console.log('비밀번호 일치');
 					handlePwdDialog();
-					setModifyState(true);
+					switch (purpose) {
+						case 'delete':
+							deleteComment(comment.no);
+							break;
+						case 'modify':
+							setModifyState(true);
+							break;
+					}
+
 				} else {
 					alert('비밀번호 불일치');
 				}
-				// commentRef.current.value = '';
 			} else {
 				alert('비밀 번호를 입력해 주세요');
 			}
@@ -52,7 +63,6 @@ const CommentItem = ({ comment }) => {
 
 	const change = (event, inputModifyingComment) => {
 		if (event.charCode === 13) {
-			// console.log('input 값 체크 : ' + inputModifyingComment);
 			if (!(inputModifyingComment === '')) {
 				modifyComment(inputModifyingComment);
 				setModifyState(false);
@@ -71,13 +81,13 @@ const CommentItem = ({ comment }) => {
 
 	return (
 		<>
-			<PwdCheckDialog dialogOpen={pwdDialState} dialogClose={handlePwdDialog} checkPwd={checkPwd} />
+			<PwdCheckDialog dialogOpen={pwdDialState} dialogClose={handlePwdDialog} checkPwd={checkPwd} dialPurpose={pwdDialPurpose} />
 			{
 				modifyState ? <TextField defaultValue={comment.content} size="small" variant="outlined" inputRef={inputModifyingComment} onKeyPress={(event) => { change(event, inputModifyingComment.current.value); }} /> : <Typography key={comment.no} color="primary">{comment.content}</Typography>
 			}
 			<div className={classes.etcContainer}>
-				<Typography className={classes.etcItem} onClick={handlePwdDialog}>수정</Typography>
-				<Typography className={classes.etcItem} onClick={() => { deleteComment(comment.no) }}>삭제</Typography>
+				<Typography className={classes.etcItem} onClick={() => { openPwdDialog('modify') }}>수정</Typography>
+				<Typography className={classes.etcItem} onClick={() => { openPwdDialog('delete') }}>삭제</Typography>
 			</div>
 		</>
 	);

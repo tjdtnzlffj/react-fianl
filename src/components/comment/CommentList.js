@@ -35,7 +35,9 @@ const useStyles = makeStyles({
 const CommentList = ({ like, postNo }) => {
 	const classes = useStyles();
 	const [state, setState] = useState({ open: false, defer: false });
-	const commentList = useSelector(state => state.comment).filter(comment => comment.postNo === String(postNo));
+	const commentList = useSelector(state => state.comment).filter(comment => comment.postNo === postNo);
+
+	// console.log(postNo);
 	const [board, setBoard] = useState({
 		id: "",
 		postLike: "",
@@ -48,6 +50,7 @@ const CommentList = ({ like, postNo }) => {
 			.then((res) => res.json())
 			.then((res) => {
 				setBoard(res);
+
 			});
 	}, []);
 
