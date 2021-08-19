@@ -10,13 +10,18 @@ import CommentList from "../comment/CommentList";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
+		marginBottom: "20px",
 	},
 	paper: {
 		padding: theme.spacing(2),
 		textAlign: "center",
 		color: theme.palette.text.secondary,
 		backgroundColor: "#f4f1f1",
-	},
+	}, container: {
+		[theme.breakpoints.up("lg")]: {
+			marginTop: "20px",
+		},
+	}
 }));
 
 const CommunityDetail = (props) => {
@@ -65,10 +70,10 @@ const CommunityDetail = (props) => {
 
 	return (
 		<div className={classes.root}>
-			<Grid container spacing={3}>
+			<Grid className={classes.container} container spacing={3}>
 				<Grid item xs={12} sm={12} md={8} lg={8}>
 					{/* 이미지 들어가는 부분 */}
-					<Paper className={classes.paper}>
+					<Paper className={classes.paper} elevation={0}>
 						<img
 							src={board.postImage}
 							alt="bread"

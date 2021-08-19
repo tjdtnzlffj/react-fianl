@@ -37,7 +37,6 @@ const CommentList = ({ like, postNo }) => {
 	const [state, setState] = useState({ open: false, defer: false });
 	const commentList = useSelector(state => state.comment).filter(comment => comment.postNo === postNo);
 
-	// console.log(postNo);
 	const [board, setBoard] = useState({
 		id: "",
 		postLike: "",
@@ -53,19 +52,6 @@ const CommentList = ({ like, postNo }) => {
 
 			});
 	}, []);
-
-	// const dispatch = useDispatch();
-	// const addLike = () => {
-	//   dispatch(
-	//     {
-	//       type: "MODIFY_BOARD",
-	//       payload: {
-	//         postLike: board.postLike + 1,
-	//       },
-	//     },
-	//     alert("추천하셨습니다.")
-	//   );
-	// };
 
 	const addLike = (e) => {
 		e.preventDefault();
