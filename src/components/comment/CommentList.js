@@ -7,6 +7,7 @@ import FavoriteOutlinedIcon from "@material-ui/icons/FavoriteOutlined";
 import CommentInputBox from "./CommentInputBox";
 import CommentItem from "./CommentItem";
 import { useSelector } from "react-redux";
+import comment from "../redux/reducers/comment";
 
 const useStyles = makeStyles({
 	container: {
@@ -88,7 +89,7 @@ const CommentList = ({ like, postNo }) => {
 						});
 					}}
 				>
-					댓글 {commentList.length}개
+					댓글 {commentList.length ? `${commentList.length}개` : '없음'}
 				</p>
 			</div>
 

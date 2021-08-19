@@ -83,7 +83,7 @@ const CommentItem = ({ comment }) => {
 		<>
 			<PwdCheckDialog dialogOpen={pwdDialState} dialogClose={handlePwdDialog} checkPwd={checkPwd} dialPurpose={pwdDialPurpose} />
 			{
-				modifyState ? <TextField defaultValue={comment.content} size="small" variant="outlined" inputRef={inputModifyingComment} onKeyPress={(event) => { change(event, inputModifyingComment.current.value); }} /> : <Typography key={comment.no} color="primary">{comment.content}</Typography>
+				modifyState ? <TextField defaultValue={comment.content} size="small" variant="outlined" inputRef={inputModifyingComment} onKeyPress={(event) => { change(event, inputModifyingComment.current.value); }} /> : <Typography key={comment.no} color="primary" style={{ textAlign: "left" }}>{comment.content}</Typography>
 			}
 			<div className={classes.etcContainer}>
 				<Typography className={classes.etcItem} onClick={() => { openPwdDialog('modify') }}>수정</Typography>

@@ -90,10 +90,12 @@ const CommunityDetail = (props) => {
 				<Grid item xs={12} sm={12} md={4} lg={4}>
 					<Paper
 						className={classes.paper}
+						elevation={0}
 						style={{
 							height: "635px",
 							maxHeight: "635px",
 							overflow: "auto",
+
 						}}
 					>
 						<div>
@@ -127,6 +129,7 @@ const CommunityDetail = (props) => {
 				<Grid item xs={8}>
 					<Paper
 						className={classes.paper}
+						elevation={0}
 						style={{ maxHeight: 300, overflow: "auto" }}
 					>
 						<CommentList
