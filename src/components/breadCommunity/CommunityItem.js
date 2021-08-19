@@ -36,10 +36,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CommunityItem = ({ board }) => {
-	// const { id } = board;
-	// console.log("--id 확인--");
-	// console.log(id);
-	// console.log(board);
 	const history = useHistory();
 	const classes = useStyles();
 

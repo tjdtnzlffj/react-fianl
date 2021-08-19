@@ -73,6 +73,7 @@ const drawerWidth = "240px";
 const useStyles = makeStyles((theme) => ({
 	root: {
 		display: "flex",
+		backgroundColor: 'white',
 	},
 	appBar: {},
 	menuButton: {
