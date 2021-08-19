@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	container: {
 		[theme.breakpoints.up("lg")]: {
-			marginTop: "80px",
+			marginTop: "20px",
 		},
 	},
 	pageDescription: {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 		flexWrap: 'wrap',
 		margin: 'auto',
 		[theme.breakpoints.up('lg')]: {
-			width: '68vw',
+			width: '61vw',
 		},
 	},
 }));
@@ -70,7 +70,7 @@ const Home = () => {
 				</Hidden>
 
 				<Grid item xs={12} sm={10} md={10} lg={10} >
-					<Paper className={classes.paper} >
+					<Paper className={classes.paper} elevation={0}>
 
 						{/* home title 부분 */}
 						<Typography variant="h5" component="h2" className="pageTitle">
