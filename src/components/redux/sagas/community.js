@@ -20,10 +20,9 @@ function* addBoard(action) {
 
 function* fetchBoardList(action) {
 	try {
-		const result = yield call(api.fetch);
 
+		const result = yield call(api.fetch);
 		yield put({ type: "FETCH_SUCCEEDED_BOARDLIST", payload: result.data });
-		// console.log(result.data);
 	} catch (e) {
 		alert(e.message);
 	}
@@ -67,6 +66,6 @@ function* communitySaga() {
 	yield takeEvery("ADD_BOARD", addBoard);
 	yield takeEvery("REMOVE_BOARD", removeBoard);
 	yield takeEvery("MODIFY_BOARD", modifyBoard);
-	yield takeLatest("FETCH_BOARDLSIT", fetchBoardList);
+	yield takeLatest("FETCH_BOARDLIST", fetchBoardList);
 }
 export default communitySaga;

@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PwdCheckDialog = ({ dialogOpen, dialogClose, checkPwd }) => {
+const PwdCheckDialog = ({ dialogOpen, dialogClose, checkPwd, dialPurpose }) => {
 
 	const pwdRef = useRef();
 
@@ -26,7 +26,7 @@ const PwdCheckDialog = ({ dialogOpen, dialogClose, checkPwd }) => {
 						label="비밀번호"
 						type="password"
 						fullWidth
-						onKeyPress={(event) => { checkPwd(event, pwdRef.current.value) }}
+						onKeyPress={(event) => { checkPwd(event, pwdRef.current.value, dialPurpose) }}
 						inputRef={pwdRef}
 						required
 					/>
@@ -36,7 +36,7 @@ const PwdCheckDialog = ({ dialogOpen, dialogClose, checkPwd }) => {
 						취소
 					</Button>
 					<Button
-						onClick={(event) => { checkPwd(event, pwdRef.current.value) }}
+						onClick={(event) => { checkPwd(event, pwdRef.current.value, dialPurpose) }}
 						color="primary">
 						입력
 					</Button>
