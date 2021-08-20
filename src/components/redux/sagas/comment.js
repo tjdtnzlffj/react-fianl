@@ -5,7 +5,7 @@ import api from '../../api/comment';
 function* fetchCommentList(action) {
 	try {
 		const result = yield call(api.fetch);
-		console.log(result.data);
+		// console.log(result.data);
 		const formatedData = result.data.map(comment => { return { no: comment.no, content: comment.content, pwd: comment.pwd, postNo: comment.board.id } })
 		// console.log(formatedData);
 		yield put({ type: "FETCH_COMMENTLIST_SUCCEEDED", payload: formatedData });

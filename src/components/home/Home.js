@@ -14,20 +14,23 @@ import ThumbNailCard from './ThumbNailCard';
 
 //server api
 import api from '../api/home';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
-		overflow: 'hidden'
+		overflow: 'hidden',
+
 	},
 	paper: {
 		padding: theme.spacing(2),
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
+
 	},
 	container: {
 		[theme.breakpoints.up("lg")]: {
-			marginTop: "80px",
+			marginTop: "20px",
 		},
 	},
 	pageDescription: {
@@ -40,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 		flexWrap: 'wrap',
 		margin: 'auto',
 		[theme.breakpoints.up('lg')]: {
-			width: '68vw',
+			width: '61vw',
 		},
 	},
 }));
@@ -48,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
 
 	const [bestPostList, setBestPostList] = useState([{ id: '', postImage: '', postTitle: '', postContent: '' }]);
-
+	const dispatch = useDispatch();
 	const classes = useStyles();
 
 	//api 호출
@@ -58,6 +61,7 @@ const Home = () => {
 			setBestPostList(result.data);
 		}
 		getBestPostList();
+		dispatch({ type: "FETCH_BOARDLIST" });
 	},
 		[]);
 
@@ -70,7 +74,7 @@ const Home = () => {
 				</Hidden>
 
 				<Grid item xs={12} sm={10} md={10} lg={10} >
-					<Paper className={classes.paper} >
+					<Paper className={classes.paper} elevation={0}>
 
 						{/* home title 부분 */}
 						<Typography variant="h5" component="h2" className="pageTitle">

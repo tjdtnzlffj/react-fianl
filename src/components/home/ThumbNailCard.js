@@ -14,15 +14,16 @@ const useStyles = makeStyles((theme) => ({
 		minWidth: '300px',
 		// margin: '0 15px',
 		border: 'solid',
+		// borderColor: '#95c2fc',
 		maxWidth: '300px',
 		margin: '0 auto 20px',
 	},
 	contentBox: {
-
+		height: '430px',
 	},
 	thumbImageBox: {
 		overflow: 'hidden',
-		height: '250px',
+		height: '260px',
 	},
 	thumbTitle: {
 		fontWeight: 'bold',

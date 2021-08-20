@@ -24,6 +24,8 @@ const community = (state = initialState, action) => {
 				board.id === action.payload.id ? action.payload : board
 			);
 		}
+		case "INCREASE_POSTLIKE_SUCCEEDED":
+			return state.map(board => board.id === action.payload.id ? action.payload : board);
 		default:
 			return state;
 	}

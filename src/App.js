@@ -39,6 +39,8 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./components/redux/reducers/index";
 import rootSaga from "./components/redux/sagas/index";
 
+import "./styles/css/home.css";
+
 const sagaMiddleWare = createSagaMiddleware();
 
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleWare));
@@ -85,6 +87,7 @@ const useStyles = makeStyles((theme) => ({
 	toolbar: theme.mixins.toolbar,
 	content: {
 		flexGrow: 1,
+		fontFamily: 'Do Hyeon',
 	},
 	drawerPaper: {
 		width: drawerWidth,
@@ -118,6 +121,10 @@ function App() {
 				main: "#ffc107",
 			},
 		},
+		// typography: {
+		// 	fontFamily: "Single Day",
+		// 	fontSize: '17',
+		// }
 	});
 
 	const handlerDrawerToggle = () => {

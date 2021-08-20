@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
 		textAlign: 'center',
 		color: theme.palette.text.secondary,
 	},
+	container: {
+		minHeight: "83vh",
+		[theme.breakpoints.up("lg")]: {
+			marginTop: "20px",
+		},
+	},
 	adminInfoContainer: {
 		display: 'flex',
 		flexFlow: 'wrap',
@@ -53,7 +59,7 @@ const ContactUs = () => {
 					<Grid item sm={1} md={1} lg={1} />
 				</Hidden>
 				<Grid item xs={12} sm={10} md={10} lg={10}>
-					<Paper className={classes.paper}>
+					<Paper className={classes.paper} elevation={0}>
 
 						{/* page 타이틀 */}
 						<Typography variant="h4">Contact Us</Typography>
